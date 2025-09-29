@@ -37,3 +37,19 @@ class TestNegativeOperations:
         assert subtract(7, -4) == 11    # subtracting a negative from a positive
 
 
+class TestMultiplyDivideWithValidation:
+    """Test multiplication and division with input validation."""
+    
+    def test_multiply_input_validation(self):
+        """Test multiply rejects non-numeric inputs."""
+        with pytest.raises(TypeError, match="Both arguments must be numbers"):
+            multiply("5", 3)
+        with pytest.raises(TypeError, match="Both arguments must be numbers"):
+            multiply(5, "3")
+    
+    def test_divide_input_validation(self):
+        """Test divide rejects non-numeric inputs."""
+        with pytest.raises(TypeError, match="Division requires numeric inputs"):
+            divide("10", 2)
+        with pytest.raises(TypeError, match="Division requires numeric inputs"):
+            divide(10, "2")
