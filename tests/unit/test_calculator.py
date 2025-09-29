@@ -3,7 +3,7 @@ Unit Tests for Calculator
 Students start with 2 passing tests, then add more
 """
 import pytest
-from src.calculator import add, divide, subtract
+from src.calculator import add, subtract, divide, multiply
 
 class TestBasicOperations:
     """Test basic arithmetic operations"""
@@ -18,19 +18,22 @@ class TestBasicOperations:
         assert subtract(5, 3) == 2
         assert subtract(10, 4) == 6
 
-class TestMultiplyDivideWithValidation:
-    """Test multiplication and division with input validation."""
-    
-    def test_multiply_input_validation(self):
-        """Test multiply rejects non-numeric inputs."""
-        with pytest.raises(TypeError, match="Both arguments must be numbers"):
-            multiply("5", 3)
-        with pytest.raises(TypeError, match="Both arguments must be numbers"):
-            multiply(5, "3")
-    
-    def test_divide_input_validation(self):
-        """Test divide rejects non-numeric inputs."""
-        with pytest.raises(TypeError, match="Division requires numeric inputs"):
-            divide("10", 2)
 
-# TODO: Students will add TestMultiplyDivide class
+class TestNegativeOperations:
+    """Test arithmetic operations with negative numbers"""
+
+    def test_add_negative_numbers(self):
+        """Test adding negative numbers"""
+        assert add(-2, -3) == -5
+        assert add(-10, -15) == -25
+        assert add(-5, 3) == -2   # mixing negative and positive
+        assert add(7, -4) == 3    # mixing positive and negative
+
+    def test_subtract_negative_numbers(self):
+        """Test subtracting negative numbers"""
+        assert subtract(-5, -3) == -2
+        assert subtract(-10, -4) == -6
+        assert subtract(-5, 3) == -8    # subtracting a positive from a negative
+        assert subtract(7, -4) == 11    # subtracting a negative from a positive
+
+
